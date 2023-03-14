@@ -28,9 +28,7 @@ SECRET_KEY = get_random_secret_key()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['mango-glacier-f73381d955fa455d99875d426f58ec50.azurewebsites.net', 'localhost', '127.0.0.1', 'testserver']
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['.azurewebsites.net', '.localhost', '127.0.0.1']
 
 # Application definition
 
