@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-&5ep7b6^wartf&mfh^)*udcc0e9pdopwuob4l9)ph9r_t2v2c=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mango-glacier-f73381d955fa455d99875d426f58ec50.azurewebsites.net', 'localhost', '127.0.0.1', 'testserver']
+# ALLOWED_HOSTS = ['mango-glacier-f73381d955fa455d99875d426f58ec50.azurewebsites.net', 'localhost', '127.0.0.1', 'testserver']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
