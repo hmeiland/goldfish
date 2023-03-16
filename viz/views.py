@@ -1,5 +1,4 @@
 from django.urls import reverse, reverse_lazy
-from django.views.decorators.csrf import csrf_protect
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from .models import VizNode,VizNodeList
 
@@ -12,11 +11,9 @@ class ItemListView(ListView):
     model = VizNode
     template_name = "viz/viznode_list.html"
     
-    @csrf_protect
     def get_queryset(self):
         return VizNode.objects.filter(viznode_list_id=self.kwargs["list_id"])
     
-    @csrf_protect
     def get_context_data(self):
         context = super().get_context_data()
         context["viznode_list"] = VizNodeList.objects.get(id=self.kwargs["list_id"])
@@ -26,7 +23,6 @@ class ListCreate(CreateView):
     model = VizNodeList
     fields = ["title"]
 
-    @csrf_protect
     def get_context_data(self):
         context = super(ListCreate, self).get_context_data()
         context["title"] = "Add a new list"
@@ -40,14 +36,13 @@ class ItemCreate(CreateView):
         "description",
         "due_date",
     ]
-    @csrf_protect
+
     def get_initial(self):
         initial_data = super(ItemCreate, self).get_initial()
         viznode_list = VizNodeList.objects.get(id=self.kwargs["list_id"])
         initial_data["viznode_list"] = viznode_list
         return initial_data
 
-    @csrf_protect
     def get_context_data(self):
         context = super(ItemCreate, self).get_context_data()
         viznode_list = VizNodeList.objects.get(id=self.kwargs["list_id"])
@@ -55,7 +50,6 @@ class ItemCreate(CreateView):
         context["title"] = "Create a new item"
         return context
 
-    @csrf_protect
     def get_success_url(self):
         return reverse("list", args=[self.object.viznode_list_id])
     
@@ -68,14 +62,12 @@ class ItemUpdate(UpdateView):
         "due_date",
     ]
 
-    @csrf_protect
     def get_context_data(self):
         context = super(ItemUpdate, self).get_context_data()
         context["viznode_list"] = self.object.viznode_list
         context["title"] = "Edit item"
         return context
 
-    @csrf_protect
     def get_success_url(self):
         return reverse("list", args=[self.object.viznode_list_id])
 
@@ -88,11 +80,9 @@ class ListDelete(DeleteView):
 class ItemDelete(DeleteView):
     model = VizNode
 
-    @csrf_protect
     def get_success_url(self):
         return reverse_lazy("list", args=[self.kwargs["list_id"]])
 
-    @csrf_protect
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["viznode_list"] = self.object.viznode_list

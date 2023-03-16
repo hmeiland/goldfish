@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['.azurewebsites.net', '.localhost', '127.0.0.1']
 CSRF_COOKIE_DOMAIN = '.azurewebsites.net'
+CSRF_TRUSTED_ORIGINS = '.azurewebsites.net'
 
 # Application definition
 
