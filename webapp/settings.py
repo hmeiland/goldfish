@@ -29,7 +29,7 @@ SECRET_KEY = get_random_secret_key()
 DEBUG = True
 
 ALLOWED_HOSTS = ['.azurewebsites.net', '.localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://webapp-oyx2xctdsx4qe.azurewebsites.net/', 'http://webapp-oyx2xctdsx4qe.azurewebsites.net/']
+CSRF_TRUSTED_ORIGINS = ['https://webapp-oyx2xctdsx4qe.azurewebsites.net', 'http://webapp-oyx2xctdsx4qe.azurewebsites.net']
 
 # Application definition
 
