@@ -29,6 +29,7 @@ SECRET_KEY = get_random_secret_key()
 DEBUG = True
 
 ALLOWED_HOSTS = ['.azurewebsites.net', '.localhost', '127.0.0.1']
+CSRF_COOKIE_DOMAIN = ['.azurewebsites.net', '.localhost', '127.0.0.1']
 
 # Application definition
 
