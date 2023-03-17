@@ -4,7 +4,7 @@ from .models import VizNode,VizNodeList
 
 import os
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
-from azure.identity.aio import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential
 
 SERVICEBUSNAME = os.environ['SERVICEBUSNAME']
 SERVICEQUEUENAME = os.environ["SERVICEQUEUENAME"]
