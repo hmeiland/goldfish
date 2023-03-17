@@ -2,13 +2,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from .models import VizNode,VizNodeList
 
-import os
-from azure.servicebus import ServiceBusClient, ServiceBusMessage
-from azure.identity import DefaultAzureCredential
 
-SERVICEBUSNAME = os.environ['SERVICEBUSNAME']
-SERVICEQUEUENAME = os.environ["SERVICEQUEUENAME"]
-credential = DefaultAzureCredential()
 
 class ListListView(ListView):
     model = VizNodeList
@@ -33,10 +27,6 @@ class ListCreate(CreateView):
     def get_context_data(self):
         context = super(ListCreate, self).get_context_data()
         context["title"] = "Add a new list"
-        servicebus_client = ServiceBusClient(fully_qualified_namespace=SERVICEBUSNAME, credential=credential, logging_enable=True)
-        sender = servicebus_client.get_queue_sender(queue_name=SERVICEQUEUENAME)
-        message = ServiceBusMessage("Django Message")
-        sender.send_messages(message)
         return context
     
 class ItemCreate(CreateView):
@@ -62,6 +52,7 @@ class ItemCreate(CreateView):
         return context
 
     def get_success_url(self):
+        self.send_message()
         return reverse("list", args=[self.object.viznode_list_id])
     
 class ItemUpdate(UpdateView):
