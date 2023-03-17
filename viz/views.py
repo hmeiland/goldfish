@@ -52,7 +52,7 @@ class ItemCreate(CreateView):
         return context
 
     def get_success_url(self):
-        VizNode.send_message()
+        VizNode.send_message(self)
         return reverse("list", args=[self.object.viznode_list_id])
     
 class ItemUpdate(UpdateView):
