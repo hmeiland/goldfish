@@ -51,7 +51,7 @@ class VizNode(models.Model):
         sender = servicebus_client.get_queue_sender(queue_name=SERVICEQUEUENAME)
         message = ServiceBusMessage("Django Message")
         sender.send_messages(message)
-        return self.title
+        return 
     
     def __str__(self):
         return f"{self.title}: due {self.due_date}"
